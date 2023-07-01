@@ -10,7 +10,7 @@ const Navbar = () => {
   const [display, setDisplay] = useState("hidden");
 
   return (
-    <header className="p-4 md:py-4 md:px-8 flex justify-between">
+    <header className="p-4 md:py-2 md:px-8 flex justify-between">
       <span className="flex items-center gap-2">
         <BsChatSquareHeartFill color="purple" size={40} />
         <p className="font-bold md:font-extrabold text-lg md:text-2xl">

@@ -84,7 +84,7 @@ const AuthInputs = ({ isSignIn, fromComponent }) => {
         </Alert>
       )}
       {!showImageSection ? (
-        <div className="bg-purple-100 h-screen grid place-content-center gap-8 md:gap-5 overflow-hidden">
+        <div className="bg-purple-100 min-h-screen grid place-content-center gap-8 md:gap-5 overflow-x-hidden p-4">
           <Logo />
 
           <div className="text-center mt-5 md:mt-1">

@@ -22,7 +22,7 @@ const ChatPage = async () => {
           <Online />
         </span>
         <h2 className="text-lg font-bold text-gray-700 md:hidden">Friends</h2>
-        <div className="flex flex-col gap-4 md:hidden overflow-y-scroll">
+        <div className="flex flex-col gap-4 md:hidden overflow-y-scroll no-scrollbar">
           {chats.map((chat) => {
             return <Chat key={chat.id} {...chat} />;
           })}

@@ -38,7 +38,7 @@ export default async function ChatLayout({ children }) {
             <Online />
           </span>
           <h2 className="text-lg font-bold text-gray-700  md:py-3">Friends</h2>
-          <div className="flex flex-col gap-4 overflow-y-scroll">
+          <div className="flex flex-col gap-4 overflow-y-scroll no-scrollbar">
             {chats.map((chat) => {
               return <Chat key={chat.id} {...chat} />;
             })}

@@ -16,8 +16,6 @@ export const getUserName = async ({ id, users }) => {
     return user.user_id != Number(payload.userId);
   });
 
-  console.log(user);
-
   return prisma.user.findUnique({
     where: { id: user[0].user_id },
     select: { firstName: true, lastName: true },
@@ -26,7 +24,6 @@ export const getUserName = async ({ id, users }) => {
 
 const Chat = async (props) => {
   const { messages, id, users } = props;
-  console.log({ messages, id, users, msg: "From inside chat" });
   const { firstName, lastName } = await getUserName({ id: Number(id), users });
 
   return (

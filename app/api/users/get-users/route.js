@@ -16,7 +16,7 @@ export const GET = async (request) => {
     ? { username: { contains: username }, NOT: { id: payload.userId } }
     : { NOT: { id: payload.userId } };
 
-  const users = await prisma.user.findMany({
+  const unfilteredUsers = await prisma.user.findMany({
     where,
     select: {
       username: true,
@@ -24,9 +24,51 @@ export const GET = async (request) => {
       id: true,
       firstName: true,
       lastName: true,
+      image: true
     },
     take: 10,
   });
 
-  return NextResponse.json({ users });
+  const chats = await prisma.user.findUnique({
+    where: { id: Number(payload.userId) },
+    select: { chats: true },
+  });
+
+  const chatUsers = await prisma.chat_Users.findMany();
+
+  const users = unfilteredUsers.map((user) => {
+    // console.log(user);
+
+    if (!user.chats.length) {
+      return { ...user, friend: false };
+    }
+
+    let exists;
+
+    for (let chat of chats.chats) {
+      console.log(chat, "Chat");
+      exists = chatUsers.map((cu) => {
+        if (cu.user_id === user.id && cu.chat_id === chat.chat_id) {
+          return cu;
+        }
+      });
+
+      console.log(exists, "exists");
+    }
+
+    // console.log(exists);
+
+    if (exists) {
+      const existingChat = exists.filter((c) => {
+        if (c) return c;
+      });
+      return { ...user, friend: true, chatId: existingChat[0].chat_id };
+    }
+
+    return { ...user, friend: false };
+  });
+
+  console.log(users, "user");
+
+  return NextResponse.json({ unfilteredUsers, chats, users });
 };
