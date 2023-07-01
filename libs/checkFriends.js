@@ -11,6 +11,7 @@ const CheckFriends = ({
   friend,
   chatId,
   addFriend,
+  online,
 }) => {
   if (friend) {
     return (
@@ -35,7 +36,9 @@ const CheckFriends = ({
               {lastName.charAt(0)}
             </p>
           )}
-          <span className="w-[13px] h-[13px] bg-green-400 rounded-full absolute bottom-0 right-0"></span>
+          {online && (
+            <span className="w-[13px] h-[13px] bg-green-400 rounded-full absolute bottom-0 right-0"></span>
+          )}
         </span>
         <span>
           <h4>
@@ -68,7 +71,9 @@ const CheckFriends = ({
             {lastName.charAt(0)}
           </p>
         )}
-        <span className="w-[13px] h-[13px] bg-green-400 rounded-full absolute bottom-0 right-0"></span>
+        {online && (
+          <span className="w-[13px] h-[13px] bg-green-400 rounded-full absolute bottom-0 right-0"></span>
+        )}
       </span>
       <span>
         <h4>

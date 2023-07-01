@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import UseSubmit from "@/hooks/useSubmit";
 
-const SendMessage = () => {
+const SendMessage = ({ id }) => {
   const [message, setMessage] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState({ loading: false, data: null });
-  const { sendMessage } = UseSubmit()
+  const { sendMessage } = UseSubmit();
 
   useEffect(() => {
     if (message) {
@@ -20,8 +20,8 @@ const SendMessage = () => {
   }, [message]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    sendMessage({message, setData})
+    e.preventDefault();
+    sendMessage({ message, setData, id, setMessage });
   };
 
   return (
@@ -33,7 +33,11 @@ const SendMessage = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button type="submit" disabled={disabled || data.loading} onClick={handleSubmit}>
+      <button
+        type="submit"
+        disabled={disabled || data.loading}
+        onClick={handleSubmit}
+      >
         {data.loading ? (
           <CircularProgress size={25} className="w-[4vw]" color="inherit" />
         ) : (

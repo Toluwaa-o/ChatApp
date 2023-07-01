@@ -22,6 +22,7 @@ const getChats = async () => {
       messages: true,
       id: true,
       users: true,
+      createdAt: true
     },
   });
 

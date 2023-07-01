@@ -24,7 +24,8 @@ export const GET = async (request) => {
       id: true,
       firstName: true,
       lastName: true,
-      image: true
+      image: true,
+      online: true
     },
     take: 10,
   });

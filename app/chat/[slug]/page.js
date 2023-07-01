@@ -1,18 +1,50 @@
 import ChatHead from "../components/ChatHead";
-import Chats from "@/data/tempChatData";
 import SendMessage from "../components/SendMessage";
 import Messages from "../components/Messages";
+import { PrismaClient } from "@prisma/client";
+import GetOtherUser from "@/Utils/getOtherUser";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
-export const metadata = {
-  title: "Person - ChatApp",
+const prisma = new PrismaClient();
+
+export const getChat = async (slug) => {
+  const chat = await prisma.chat.findUnique({
+    where: {
+      id: Number(slug),
+    },
+    select: {
+      messages: true,
+      createdAt: true,
+      users: true,
+    },
+  });
+
+  return chat;
 };
 
-const IndividualChatPage = () => {
+export const generateMetadata = async ({ params: { slug } }) => {
+  const chat = await getChat(slug);
+  const otherUser = await GetOtherUser(chat.users);
+
+  return {
+    title: `${otherUser.firstName} ${otherUser.lastName} - ChatApp`,
+  };
+};
+
+const IndividualChatPage = async ({ params: { slug } }) => {
+  const chat = await getChat(slug);
+  const otherUser = await GetOtherUser(chat.users);
+  const payload = jwt.verify(
+    cookies().get("tjw").value,
+    process.env.JWT_SECRET
+  );
+
   return (
     <div>
-      <ChatHead />
-      <Messages Chats={Chats} />
-      <SendMessage />
+      <ChatHead {...otherUser} />
+      <Messages Chats={chat.messages} id={Number(payload.userId)} />
+      <SendMessage id={Number(slug)} />
     </div>
   );
 };

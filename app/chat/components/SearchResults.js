@@ -4,7 +4,7 @@ import CheckFriends from "@/libs/checkFriends";
 const SearchResults = (props) => {
   const addFriend = () => {
     axios
-      .post(`http://localhost:3000/api/chats/create-chat`, { friend: id })
+      .post(`http://localhost:3000/api/chats/create-chat`, { friend: props.id })
       .then((res) => {
         props.setSearch("");
         alert(res.data.msg);
