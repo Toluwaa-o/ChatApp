@@ -1,12 +1,12 @@
 import ChatHead from "../components/ChatHead";
 import SendMessage from "../components/SendMessage";
 import Messages from "../components/Messages";
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import GetOtherUser from "@/Utils/getOtherUser";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const getChat = async (slug) => {
   const chat = await prisma.chat.findUnique({
@@ -43,9 +43,14 @@ const IndividualChatPage = async ({ params: { slug } }) => {
   return (
     <div>
       <ChatHead {...otherUser} />
-      <Messages Chats={chat.messages} id={Number(payload.userId)} />
+      <Messages
+        Chats={chat.messages}
+        id={Number(payload.userId)}
+        slug={Number(slug)}
+      />
       <SendMessage id={Number(slug)} />
     </div>
   );
 };
 export default IndividualChatPage;
+export const revalidate = 0;

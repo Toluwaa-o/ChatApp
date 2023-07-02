@@ -1,9 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const GET = async () => {
   const payload = await jwt.verify(

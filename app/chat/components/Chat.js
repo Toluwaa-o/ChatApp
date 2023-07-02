@@ -1,12 +1,12 @@
 import Online from "./Online";
 import Link from "next/link";
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import GetTime from "@/Utils/getTime";
 import CheckUnreadMessages from "@/Utils/checkUnreadMessages";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const getUserName = async ({ users }) => {
   const payload = await jwt.verify(
@@ -36,6 +36,7 @@ const Chat = async (props) => {
         image={image}
         firstName={firstName}
         lastName={lastName}
+        online={online}
       />
       <span>
         <h4 className="text-gray-700 font-semibold">
@@ -51,7 +52,7 @@ const Chat = async (props) => {
         <p className="text-xs font-semibold text-gray-500">
           {GetTime({ messages, createdAt })}
         </p>
-        {!messages.length ? null : (
+        {!unreadMessages.length ? null : (
           <span className="w-[8px] h-[8px] bg-green-400 rounded-full mx-auto mt-2">
             {unreadMessages.length}
           </span>

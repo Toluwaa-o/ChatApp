@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const POST = async (request) => {
   const token = cookies().get("tjw");

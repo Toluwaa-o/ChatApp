@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const GET = async (request, { params: { slug } }) => {
   const user = await prisma.user.findUnique({

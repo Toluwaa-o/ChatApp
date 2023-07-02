@@ -30,7 +30,14 @@ const useAuth = () => {
     }
   };
 
-  const signup = async ({ email, password, firstName, lastName, username, setShowImageSection }) => {
+  const signup = async ({
+    email,
+    password,
+    firstName,
+    lastName,
+    username,
+    setShowImageSection,
+  }) => {
     setAuthState({ data: null, error: null, loading: true });
     try {
       const res = await axios.post("http://localhost:3000/api/auth/signup", {
@@ -42,7 +49,7 @@ const useAuth = () => {
       });
 
       setAuthState({ data: res.data, error: null, loading: false });
-      setShowImageSection(true)
+      setShowImageSection(true);
       // router.push("/chat");
     } catch (err) {
       setAuthState({
@@ -53,8 +60,18 @@ const useAuth = () => {
     }
   };
 
-  const signout = () => {
-    deleteCookie("jwt");
+  const signout = async () => {
+    setAuthState({ data: null, error: null, loading: true });
+    try {
+      await axios.get("http://localhost:3000/api/auth/signout");
+      setAuthState({ data: null, error: null, loading: false });
+    } catch (err) {
+      setAuthState({
+        data: null,
+        error: err.response.data.msg,
+        loading: false,
+      });
+    }
   };
 
   return { signin, signout, signup };

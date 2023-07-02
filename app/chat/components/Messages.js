@@ -3,14 +3,17 @@
 import moment from "moment";
 import checkMark from "@/Utils/check";
 import { useEffect, useRef } from "react";
+import axios from "axios";
 
-const Messages = ({ Chats, id }) => {
+const Messages = ({ Chats, id, slug }) => {
   const myRef = useRef(null);
 
   useEffect(() => {
     if (Chats.length) {
       myRef.current.scrollIntoView();
     }
+
+    axios.patch(`http://localhost:3000/api/chats/read-message/${slug}`);
   }, []);
 
   if (!Chats.length) return <></>;
@@ -40,7 +43,9 @@ const Messages = ({ Chats, id }) => {
               key={msg.id}
             >
               <p>{msg.message}</p>
-              <p className="text-xs">{moment(msg.createdAt).format("hh:mm")}</p>
+              <p className="text-xs">
+                {moment(msg.createdAt).format("h:mm a")}
+              </p>
             </span>
           );
         }

@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+// import prismaConnect from "@/Utils/prismaconnect";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import prismaConnect from "@/Utils/prismaconnect";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect()
 
 const getChats = async () => {
   const payload = await jwt.verify(

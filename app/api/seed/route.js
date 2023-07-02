@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import prismaConnect from "@/Utils/prismaconnect";
 import users from "@/data/users";
 import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 export const GET = async () => {
   await prisma.user.createMany({

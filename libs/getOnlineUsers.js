@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import prismaConnect from "@/Utils/prismaconnect";
 
-const prisma = new PrismaClient();
+const prisma = prismaConnect();
 
 const GetOnlineUsers = async (chats) => {
   const payload = jwt.verify(
@@ -44,7 +44,9 @@ const GetOnlineUsers = async (chats) => {
     }
   });
 
-  return onlineChats
+  return onlineChats;
 };
 
 export default GetOnlineUsers;
+
+export const revalidate = 0;

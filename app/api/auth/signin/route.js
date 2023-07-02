@@ -1,11 +1,10 @@
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import { NextResponse } from "next/server";
 import createToken from "@/libs/createJWT";
+import prismaConnect from "@/Utils/prismaconnect";
 
-const prisma = new PrismaClient();
-
+const prisma = prismaConnect()
 export const POST = async (request) => {
   const { email, password } =
     await request.json();
@@ -59,6 +58,9 @@ export const POST = async (request) => {
   }
 
   await createToken({ userId: user.id, username: user.username });
+  await prisma.user.update({
+    where: { id: user.id }, data: { online: true }
+  })
 
   return NextResponse.json({ msg: "Success! You are logged in!" });
 };

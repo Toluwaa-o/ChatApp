@@ -20,7 +20,7 @@ const ChatPage = async () => {
         <Search />
         <span className="grid grid-flow-col auto-cols-[20%] overflow-x-scroll gap-4 scroll no-scrollbar p-3 md:hidden">
           {onlineUsers.map((user) => {
-            return <Online {...user} />;
+            return <Online key={user.id} {...user} />;
           })}
         </span>
         <h2 className="text-lg font-bold text-gray-700 md:hidden">Friends</h2>
@@ -41,4 +41,4 @@ const ChatPage = async () => {
 
 export default ChatPage;
 
-export const revalidate = 60 * 5
+export const revalidate = 0

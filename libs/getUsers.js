@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import prismaConnect from '@/Utils/prismaconnect'
 
-const prisma = new PrismaClient()
+const prisma = prismaConnect()
 
 export default async function GetUsers(contains) {
     const users = await prisma.users.findFirst({
