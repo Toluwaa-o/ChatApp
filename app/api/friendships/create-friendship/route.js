@@ -28,7 +28,7 @@ export const PATCH = async (request) => {
     data: { friendship_id: friendship.id }
   })
 
-  await prisma.user.update({})
+  await prisma.$disconnect()
 
   return NextResponse.json({ user });
 };

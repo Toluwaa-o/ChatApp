@@ -38,5 +38,7 @@ export const DELETE = async (request, { params: { slug } }) => {
     },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Success! Message deleted successfully!" });
 };

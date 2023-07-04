@@ -21,5 +21,7 @@ export const GET = async () => {
     },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ user });
 };

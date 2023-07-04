@@ -19,5 +19,7 @@ export const POST = async (request) => {
     },
   });
 
+  await prisma.$disconnect()
+
   return Response.json({ msg: "Profile picture updated!" });
 };

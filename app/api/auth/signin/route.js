@@ -62,5 +62,7 @@ export const POST = async (request) => {
     where: { id: user.id }, data: { online: true }
   })
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Success! You are logged in!" });
 };

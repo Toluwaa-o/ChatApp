@@ -62,5 +62,7 @@ export const GET = async (request) => {
     return { ...user, friend: false };
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ unfilteredUsers, chats, users });
 };

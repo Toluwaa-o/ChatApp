@@ -27,6 +27,8 @@ const getChats = async () => {
     },
   });
 
+  await prisma.$disconnect()
+
   return chats;
 };
 

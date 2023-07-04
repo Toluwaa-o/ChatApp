@@ -17,5 +17,7 @@ export const DELETE = async () => {
     },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Your account has been deleted!" });
 };

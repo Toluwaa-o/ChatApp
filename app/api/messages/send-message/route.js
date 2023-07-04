@@ -26,5 +26,7 @@ export const POST = async (request) => {
     data: { message, chat_id, user_id: payload.userId },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Success! Message sent successfully.", newMessage });
 };

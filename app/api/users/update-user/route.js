@@ -25,5 +25,7 @@ export const PATCH = async (request) => {
     data,
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ user });
 };

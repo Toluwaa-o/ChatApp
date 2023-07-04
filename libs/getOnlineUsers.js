@@ -10,6 +10,8 @@ const GetOnlineUsers = async (chats) => {
     process.env.JWT_SECRET
   );
 
+  if (!chats.length) return;
+
   const onlineUsers = await prisma.user.findMany({
     where: {
       online: true,
@@ -22,6 +24,8 @@ const GetOnlineUsers = async (chats) => {
       id: true,
     },
   });
+
+  await prisma.$disconnect()
 
   let users;
 

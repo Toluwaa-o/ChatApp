@@ -25,6 +25,8 @@ const GetOtherUser = async (users) => {
     },
   });
 
+  await prisma.$disconnect()
+
   return otherUser;
 };
 

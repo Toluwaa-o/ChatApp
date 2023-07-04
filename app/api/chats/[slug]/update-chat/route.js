@@ -54,5 +54,7 @@ export const PATCH = async (request, { params: { slug } }) => {
     },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ chat });
 };

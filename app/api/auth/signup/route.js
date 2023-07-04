@@ -77,5 +77,7 @@ export const POST = async (request) => {
     data: { online: true },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Success! Registeration completed!" });
 };

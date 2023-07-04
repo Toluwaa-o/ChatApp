@@ -53,5 +53,7 @@ export const GET = async (request, { params: { slug } }) => {
     take: number,
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ messages });
 };

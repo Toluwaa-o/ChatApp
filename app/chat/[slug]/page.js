@@ -30,6 +30,8 @@ export const getChat = async (slug) => {
     where: { user_id: Number(payload.userId), chat_id: Number(slug) },
   });
 
+  await prisma.$disconnect()
+
   if (!userIsIncluded) notFound();
 
   return chat;

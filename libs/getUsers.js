@@ -16,5 +16,7 @@ export default async function GetUsers(contains) {
         }
     })
 
+    await prisma.$disconnect()
+
     return users
 }

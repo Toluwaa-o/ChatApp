@@ -5,10 +5,12 @@ import { NextResponse } from "next/server";
 const prisma = prismaConnect();
 
 export const GET = async () => {
+  // await prisma.user.deleteMany({})
   await prisma.user.createMany({
     data: users,
   });
 
-  console.log("Successfully created");
+  await prisma.$disconnect()
+
   return NextResponse.json("Success!");
 };

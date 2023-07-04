@@ -19,5 +19,7 @@ export const GET = async (request, { params: { slug } }) => {
     return NextResponse.json({ msg: "No user found!" }, { status: 404 });
   }
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ user });
 };

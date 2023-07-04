@@ -6,6 +6,8 @@ const Chats = async () => {
   const chats = await getChats();
 
   const onlineUsers = await GetOnlineUsers(chats);
+
+  if(!onlineUsers) return
   return (
     <>
       {onlineUsers.map((user) => {

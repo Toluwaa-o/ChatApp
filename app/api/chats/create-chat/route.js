@@ -44,5 +44,7 @@ export const POST = async (request) => {
     data: chatData,
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Success! Chat created successfully!" });
 };

@@ -17,5 +17,7 @@ export const GET = async () => {
     data: { online: false },
   });
 
+  await prisma.$disconnect()
+
   return NextResponse.json({ msg: "Logged Out! Come back soon." });
 };
