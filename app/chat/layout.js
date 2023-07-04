@@ -1,7 +1,6 @@
 import AuthInputs from "../components/AuthInputs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import Chat from "./components/Chat";
 import Search from "./components/Search";
 import Header from "./components/Chats/Header";
 import OnlineChats from "./components/Chats/OnlineChats";
