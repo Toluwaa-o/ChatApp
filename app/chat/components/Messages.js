@@ -7,6 +7,8 @@ import axios from "axios";
 
 const Messages = ({ Chats, id, slug }) => {
   const myRef = useRef(null);
+  const currentTime = moment(new Date().toISOString());
+  const oneDay = 24 * 3600000;
 
   useEffect(() => {
     if (Chats.length) {
@@ -30,7 +32,9 @@ const Messages = ({ Chats, id, slug }) => {
               <p>{msg.message}</p>
               <span className="flex justify-end gap-2 items-center">
                 <p className="text-xs">
-                  {moment(msg.createdAt).format("hh:mm")}
+                  {currentTime.diff(moment(msg.createdAt)) >= oneDay
+                    ? moment(msg.createdAt).format("ddd hA")
+                    : moment(msg.createdAt).format("h:mm a")}
                 </p>
                 {checkMark(msg.viewed)}
               </span>
@@ -44,7 +48,9 @@ const Messages = ({ Chats, id, slug }) => {
             >
               <p>{msg.message}</p>
               <p className="text-xs">
-                {moment(msg.createdAt).format("h:mm a")}
+                {currentTime.diff(moment(msg.createdAt)) >= oneDay
+                  ? moment(msg.createdAt).format("ddd hA")
+                  : moment(msg.createdAt).format("h:mm a")}
               </p>
             </span>
           );

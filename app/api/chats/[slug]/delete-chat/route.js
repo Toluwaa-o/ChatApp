@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 const prisma = prismaConnect();
 
 export const DELETE = async (request, { params: { slug } }) => {
-  const payload = await jwt.verify(
+  const payload = jwt.verify(
     cookies().get("tjw").value,
     process.env.JWT_SECRET
   );
@@ -29,14 +29,25 @@ export const DELETE = async (request, { params: { slug } }) => {
     );
   }
 
-  await prisma.usersInChat.delete({
+  await prisma.chat_Users.deleteMany({
     where: {
-      user_id_chat_id: {
-        user_id: payload.userId,
-        chat_id: Number(slug),
-      },
+      chat_id: Number(slug),
     },
   });
 
-  return NextResponse.json({ msg: "Success! You have left the chat" });
+  await prisma.message.deleteMany({
+    where: {
+      chat_id: Number(slug),
+    },
+  });
+
+  await prisma.chat.delete({
+    where: {
+      id: Number(slug),
+    },
+  });
+
+  return NextResponse.json({
+    msg: "Success! You have successfully removed friend!",
+  });
 };

@@ -25,7 +25,7 @@ export const GET = async (request) => {
       firstName: true,
       lastName: true,
       image: true,
-      online: true
+      online: true,
     },
     take: 10,
   });
@@ -38,28 +38,21 @@ export const GET = async (request) => {
   const chatUsers = await prisma.chat_Users.findMany();
 
   const users = unfilteredUsers.map((user) => {
-    // console.log(user);
-
     if (!user.chats.length) {
       return { ...user, friend: false };
     }
 
-    let exists;
+    const exists = [];
 
     for (let chat of chats.chats) {
-      console.log(chat, "Chat");
-      exists = chatUsers.map((cu) => {
-        if (cu.user_id === user.id && cu.chat_id === chat.chat_id) {
-          return cu;
+      chatUsers.forEach((cu) => {
+        if (cu && cu.user_id === user.id && cu.chat_id === chat.chat_id) {
+          exists.push(cu);
         }
       });
-
-      console.log(exists, "exists");
     }
 
-    // console.log(exists);
-
-    if (exists) {
+    if (exists.length) {
       const existingChat = exists.filter((c) => {
         if (c) return c;
       });
@@ -68,8 +61,6 @@ export const GET = async (request) => {
 
     return { ...user, friend: false };
   });
-
-  console.log(users, "user");
 
   return NextResponse.json({ unfilteredUsers, chats, users });
 };

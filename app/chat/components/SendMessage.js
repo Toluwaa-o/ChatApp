@@ -25,7 +25,7 @@ const SendMessage = ({ id }) => {
   };
 
   return (
-    <form className="fixed bottom-0 bg-white w-[100vw] flex items-center border border-purple-500 rounded-2xl">
+    <form className="fixed bottom-0 bg-white w-[100vw] flex items-center border border-purple-500 rounded-2xl md:w-[67%]">
       <textarea
         placeholder="Send a message..."
         className="p-4 w-[90vw] max-h-[8vh] outline-none text-gray-700"

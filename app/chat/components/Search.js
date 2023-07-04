@@ -45,9 +45,20 @@ const Search = () => {
         {search ? (
           <span className="fixed top-[13vh] bg-white w-[100%] md:w-[33%] h-[100%] p-3 m-auto left-0 right-0 md:right-auto">
             <Suspense fallback={<CircularProgress color="inherit" />}>
-              {details.data.map((user) => (
-                <SearchResults key={user.id} setSearch={setSearch} {...user} />
-              ))}
+              {details.data.length ? (
+                details.data.map((user) => (
+                  <SearchResults
+                    key={user.id}
+                    setSearch={setSearch}
+                    {...user}
+                  />
+                ))
+              ) : (
+                <p className="text-center text-gray-800">
+                  No user found with username{" "}
+                  <span className="italic">{search}</span>
+                </p>
+              )}
             </Suspense>
           </span>
         ) : null}

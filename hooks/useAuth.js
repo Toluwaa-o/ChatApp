@@ -65,6 +65,7 @@ const useAuth = () => {
     try {
       await axios.get("http://localhost:3000/api/auth/signout");
       setAuthState({ data: null, error: null, loading: false });
+      router.refresh();
     } catch (err) {
       setAuthState({
         data: null,

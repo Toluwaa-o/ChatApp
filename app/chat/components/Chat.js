@@ -49,11 +49,11 @@ const Chat = async (props) => {
         </p>
       </span>
       <span className="flex flex-col h-[100%] ml-auto">
-        <p className="text-xs font-semibold text-gray-500">
+        <p className="text-[0.64rem] font-semibold text-gray-500">
           {GetTime({ messages, createdAt })}
         </p>
         {!unreadMessages.length ? null : (
-          <span className="w-[8px] h-[8px] bg-green-400 rounded-full mx-auto mt-2">
+          <span className="w-[18px] h-[18px] bg-green-400 rounded-full mx-auto mt-2 text-xs text-white grid place-content-center">
             {unreadMessages.length}
           </span>
         )}

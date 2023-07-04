@@ -8,7 +8,7 @@ const CheckUnreadMessages = (messages) => {
   );
 
   const unreadMessages = messages.filter((msg) => {
-    return msg.user_id !== Number(payload.user_id) && msg.viewed;
+    return msg.user_id !== Number(payload.userId) && !msg.viewed;
   });
 
   return unreadMessages;
