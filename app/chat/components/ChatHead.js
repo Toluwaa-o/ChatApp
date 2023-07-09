@@ -7,15 +7,15 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import axios from "axios";
+import instance from "@/app/components/axios/config";
 
 const ChatHead = ({ firstName, lastName, image, id, online, slug }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
 
   const removeFriend = () => {
-    axios
-      .delete(`https://chat-app-toluwaa-o.vercel.app/api/chats/${slug}/delete-chat`)
+    instance
+      .delete(`/chats/${slug}/delete-chat`)
       .then(() => router.push("/chat"))
       .catch((err) => {
         console.log(err);

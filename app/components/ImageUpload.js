@@ -5,11 +5,11 @@ import { useState, useContext } from "react";
 import { RxAvatar } from "react-icons/rx";
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "@uploadthing/react";
-import axios from "axios";
 import { memo } from "react";
 import Image from "next/image";
 import Logo from "./Logo";
 import Link from "next/link";
+import instance from "./axios/config";
 
 const ImageUploader = () => {
   const { setAuthState } = useContext(AuthenticationContext);
@@ -49,8 +49,8 @@ const ImageUploader = () => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                axios
-                  .post("https://chat-app-toluwaa-o.vercel.app/api/image", {
+                instance
+                  .post("/image", {
                     image: res[0].fileUrl,
                   })
                   .then(() => setImage(res));

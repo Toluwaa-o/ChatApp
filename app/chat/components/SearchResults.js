@@ -1,16 +1,16 @@
-import axios from "axios";
 import CheckFriends from "@/libs/checkFriends";
 import { useRouter } from "next/navigation";
+import instance from "@/app/components/axios/config";
 
 const SearchResults = (props) => {
   const router = useRouter();
-    
+
   const addFriend = () => {
-    axios
-      .post(`https://chat-app-toluwaa-o.vercel.app/api/chats/create-chat`, { friend: props.id })
+    instance
+      .post(`/chats/create-chat`, { friend: props.id })
       .then((res) => {
         props.setSearch("");
-        router.refresh()
+        router.refresh();
         alert(res.data.msg);
       })
       .catch((err) => {

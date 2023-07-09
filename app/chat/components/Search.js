@@ -3,8 +3,8 @@ import { useState, useEffect, Suspense } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AiOutlineSearch } from "react-icons/ai";
 import { memo } from "react";
-import axios from "axios";
 import SearchResults from "./SearchResults";
+import instance from "@/app/components/axios/config";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -17,11 +17,9 @@ const Search = () => {
   useEffect(() => {
     if (search) {
       setDetails({ loading: true, data: [], error: null });
-      axios
-        .get(`https://chat-app-toluwaa-o.vercel.app/api/users/get-users?username=${search}`)
-        .then((res) => {
-          setDetails({ loading: false, data: res.data.users, error: null });
-        });
+      instance.get(`/users/get-users?username=${search}`).then((res) => {
+        setDetails({ loading: false, data: res.data.users, error: null });
+      });
     }
   }, [search]);
 

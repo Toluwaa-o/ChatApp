@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, createContext, useEffect } from 'react'
-import axios from "axios";
+import { useState, createContext, useEffect } from "react";
 import { getCookie } from "cookies-next";
+import instance from "../components/axios/config";
 
 export const AuthenticationContext = createContext({
   loading: false,
@@ -25,7 +25,7 @@ const AuthContext = ({ children }) => {
         return setAuthState({ data: null, error: null, loading: false });
       }
 
-      const res = await axios.get("https://chat-app-toluwaa-o.vercel.app/api/auth/me");
+      const res = await instance.get("/auth/me");
       setAuthState({ data: res.data, error: null, loading: false });
     } catch (err) {
       setAuthState({

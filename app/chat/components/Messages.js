@@ -3,7 +3,7 @@
 import moment from "moment";
 import checkMark from "@/Utils/check";
 import { useEffect, useRef } from "react";
-import axios from "axios";
+import instance from "@/app/components/axios/config";
 
 const Messages = ({ Chats, id, slug }) => {
   const myRef = useRef(null);
@@ -15,7 +15,7 @@ const Messages = ({ Chats, id, slug }) => {
       myRef.current.scrollIntoView();
     }
 
-    axios.patch(`https://chat-app-toluwaa-o.vercel.app/api/chats/read-message/${slug}`);
+    instance.patch(`/chats/read-message/${slug}`);
   }, []);
 
   if (!Chats.length) return <></>;

@@ -1,8 +1,7 @@
-import axios from "axios";
-import { deleteCookie } from "cookies-next";
 import { useContext } from "react";
 import { AuthenticationContext } from "../app/context/AuthContext";
 import { useRouter } from "next/navigation";
+import instance from "@/app/components/axios/config";
 
 const useAuth = () => {
   const router = useRouter();
@@ -11,7 +10,7 @@ const useAuth = () => {
   const signin = async ({ email, password, fromComponent }) => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      const res = await axios.post("https://chat-app-toluwaa-o.vercel.app/api/auth/signin", {
+      const res = await instance.post("/auth/signin", {
         email,
         password,
       });
@@ -40,7 +39,7 @@ const useAuth = () => {
   }) => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      const res = await axios.post("https://chat-app-toluwaa-o.vercel.app/api/auth/signup", {
+      const res = await instance.post("/auth/signup", {
         email,
         password,
         firstName,
@@ -63,7 +62,7 @@ const useAuth = () => {
   const signout = async () => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      await axios.get("https://chat-app-toluwaa-o.vercel.app/api/auth/signout");
+      await instance.get("/auth/signout");
       setAuthState({ data: null, error: null, loading: false });
       router.push('/login');
     } catch (err) {
