@@ -7,7 +7,7 @@ const UseSubmit = () => {
     setData({ loading: true, data: null });
     try {
       await axios.post(
-        `http://localhost:3000/api/messages/send-message?chat=${id}`,
+        `http://chat-app-toluwaa-o.vercel.app/api/messages/send-message?chat=${id}`,
         { message }
       );
       setData({ loading: false, data: null });

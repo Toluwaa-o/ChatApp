@@ -18,7 +18,7 @@ const Search = () => {
     if (search) {
       setDetails({ loading: true, data: [], error: null });
       axios
-        .get(`http://localhost:3000/api/users/get-users?username=${search}`)
+        .get(`http://chat-app-toluwaa-o.vercel.app/api/users/get-users?username=${search}`)
         .then((res) => {
           setDetails({ loading: false, data: res.data.users, error: null });
         });
