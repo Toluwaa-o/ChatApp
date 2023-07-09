@@ -15,7 +15,7 @@ const ChatHead = ({ firstName, lastName, image, id, online, slug }) => {
 
   const removeFriend = () => {
     axios
-      .delete(`http://chat-app-toluwaa-o.vercel.app/api/chats/${slug}/delete-chat`)
+      .delete(`https://chat-app-toluwaa-o.vercel.app/api/chats/${slug}/delete-chat`)
       .then(() => router.push("/chat"))
       .catch((err) => {
         console.log(err);

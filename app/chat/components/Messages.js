@@ -15,7 +15,7 @@ const Messages = ({ Chats, id, slug }) => {
       myRef.current.scrollIntoView();
     }
 
-    axios.patch(`http://chat-app-toluwaa-o.vercel.app/api/chats/read-message/${slug}`);
+    axios.patch(`https://chat-app-toluwaa-o.vercel.app/api/chats/read-message/${slug}`);
   }, []);
 
   if (!Chats.length) return <></>;

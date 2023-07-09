@@ -7,7 +7,7 @@ const SearchResults = (props) => {
     
   const addFriend = () => {
     axios
-      .post(`http://chat-app-toluwaa-o.vercel.app/api/chats/create-chat`, { friend: props.id })
+      .post(`https://chat-app-toluwaa-o.vercel.app/api/chats/create-chat`, { friend: props.id })
       .then((res) => {
         props.setSearch("");
         router.refresh()

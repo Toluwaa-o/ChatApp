@@ -50,7 +50,7 @@ const ImageUploader = () => {
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
                 axios
-                  .post("http://chat-app-toluwaa-o.vercel.app/api/image", {
+                  .post("https://chat-app-toluwaa-o.vercel.app/api/image", {
                     image: res[0].fileUrl,
                   })
                   .then(() => setImage(res));

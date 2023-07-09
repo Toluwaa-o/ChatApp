@@ -25,7 +25,7 @@ const AuthContext = ({ children }) => {
         return setAuthState({ data: null, error: null, loading: false });
       }
 
-      const res = await axios.get("http://chat-app-toluwaa-o.vercel.app/api/auth/me");
+      const res = await axios.get("https://chat-app-toluwaa-o.vercel.app/api/auth/me");
       setAuthState({ data: res.data, error: null, loading: false });
     } catch (err) {
       setAuthState({

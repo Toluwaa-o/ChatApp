@@ -11,7 +11,7 @@ const useAuth = () => {
   const signin = async ({ email, password, fromComponent }) => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      const res = await axios.post("http://chat-app-toluwaa-o.vercel.app/api/auth/signin", {
+      const res = await axios.post("https://chat-app-toluwaa-o.vercel.app/api/auth/signin", {
         email,
         password,
       });
@@ -40,7 +40,7 @@ const useAuth = () => {
   }) => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      const res = await axios.post("http://chat-app-toluwaa-o.vercel.app/api/auth/signup", {
+      const res = await axios.post("https://chat-app-toluwaa-o.vercel.app/api/auth/signup", {
         email,
         password,
         firstName,
@@ -63,7 +63,7 @@ const useAuth = () => {
   const signout = async () => {
     setAuthState({ data: null, error: null, loading: true });
     try {
-      await axios.get("http://chat-app-toluwaa-o.vercel.app/api/auth/signout");
+      await axios.get("https://chat-app-toluwaa-o.vercel.app/api/auth/signout");
       setAuthState({ data: null, error: null, loading: false });
       router.push('/login');
     } catch (err) {
