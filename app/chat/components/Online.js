@@ -12,8 +12,8 @@ const Online = ({ isNotOnlineBar, image, firstName, lastName, online }) => {
           <Image
             src={image}
             alt={`${firstName} ${lastName}`}
-            width={35}
-            height={35}
+            width={50}
+            height={50}
             className="w-[100%] h-[100%] rounded-full"
           />
         ) : (
