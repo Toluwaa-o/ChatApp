@@ -10,9 +10,9 @@ const GetTime = ({ messages, createdAt }) => {
   if (messages.length) {
     if (
       currentTime.diff(moment(messages[messages.length - 1].createdAt)) >=
-      oneDay
+      oneYear
     ) {
-      return moment(messages[messages.length - 1].createdAt).format("ddd");
+      return moment(messages[messages.length - 1].createdAt).format("D/M/YY");
     }
 
     if (
@@ -24,24 +24,24 @@ const GetTime = ({ messages, createdAt }) => {
 
     if (
       currentTime.diff(moment(messages[messages.length - 1].createdAt)) >=
-      oneYear
+      oneDay
     ) {
-      return moment(messages[messages.length - 1].createdAt).format("D/M/YY");
+      return moment(messages[messages.length - 1].createdAt).format("ddd");
     }
 
     return moment(messages[messages.length - 1].createdAt).format("h:mm a");
   }
 
-  if (currentTime.diff(createdTime) >= oneDay) {
-    return moment(createdAt).format("ddd");
+  if (currentTime.diff(createdTime) >= oneYear) {
+    return moment(createdAt).format("D/M/YY");
   }
 
   if (currentTime.diff(createdTime) >= oneWeek) {
     return moment(createdAt).format("DD/MM");
   }
 
-  if (currentTime.diff(createdTime) >= oneYear) {
-    return moment(createdAt).format("D/M/YY");
+  if (currentTime.diff(createdTime) >= oneDay) {
+    return moment(createdAt).format("ddd");
   }
 
   return moment(createdAt).format("h:mm a");
