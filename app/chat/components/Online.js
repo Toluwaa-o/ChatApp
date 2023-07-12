@@ -14,7 +14,7 @@ const Online = ({ isNotOnlineBar, image, firstName, lastName, online }) => {
             alt={`${firstName} ${lastName}`}
             width={50}
             height={50}
-            className="w-[100%] h-[100%] rounded-full"
+            className="w-[50px] h-[50px] rounded-full"
           />
         ) : (
           <p className="text-gray-700 font-bold capitalize">
